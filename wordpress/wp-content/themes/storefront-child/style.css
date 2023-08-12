@@ -31,6 +31,20 @@ h1,h2,h3,h4,h5,h6{
 h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{
     font-weight:600
 }
+/* styles for buttons */
 .button {
     border-radius: 5px;
+    border: 2px solid black !important;
+}
+.wp-block-buttons>.wp-block-button {
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.hentry .entry-content a.wp-block-button__link {
+    border-radius: 5px;
+    border: 2px solid black !important;
+}
+input[type=submit] {
+    border-radius: 5px;
+    border: 2px solid black !important;
 }
