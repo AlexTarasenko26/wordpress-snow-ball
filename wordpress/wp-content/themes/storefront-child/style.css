@@ -48,3 +48,28 @@ input[type=submit] {
     border-radius: 5px;
     border: 2px solid black !important;
 }
+html{
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+body,button,input,textarea{
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+.single-product div.product p.price {
+    margin: 0.41575em 0;
+}
+.single-product div.product table.variations {
+    table-layout: auto;
+}
+table.variations>tbody>tr {
+    display: inline-table;
+    padding: 0 0.35rem 0 0;
+}
+table.variations>tbody>tr>td>select {
+    max-width: 100% !important;
+}
+/* update page size */
+@media(min-width: 768px) {
+    .col-full {
+        max-width: 75.0em !important;
+    }
+}
