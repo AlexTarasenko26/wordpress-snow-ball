@@ -25,11 +25,8 @@ Images License: GNU General Public License v2 or later
 body,button,input,textarea{
     font-weight:600
 }
-h1,h2,h3,h4,h5,h6{
-    font-weight:600;
-}
-h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{
-    font-weight:600
+body,button,input,textarea{
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
 /* styles for buttons */
 .button {
@@ -40,6 +37,40 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{
     border-radius: 5px;
     border: 2px solid black;
 }
+dl.variation {
+    font-size: .875em;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+dl.variation dd {
+    margin: 0 0 1em;
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    float: left;
+    text-align: left;
+}
+dl.variation dt {
+    font-weight: 600;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    float: left;
+    text-align: left;
+}
+.entry-header {
+    padding: 0 0 2em !important;
+}
+html{
+    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight:600;
+}
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{
+    font-weight:600
+}
 .hentry .entry-content a.wp-block-button__link {
     border-radius: 5px;
     border: 2px solid black !important;
@@ -48,17 +79,14 @@ input[type=submit] {
     border-radius: 5px;
     border: 2px solid black !important;
 }
-html{
-    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-}
-body,button,input,textarea{
-    font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-}
 .single-product div.product p.price {
     margin: 0.41575em 0;
 }
 .single-product div.product table.variations {
     table-layout: auto;
+}
+.storefront-breadcrumb {
+    margin: 0 !important;
 }
 table.variations>tbody>tr {
     display: inline-table;
