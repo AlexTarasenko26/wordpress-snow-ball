@@ -402,8 +402,8 @@ class Functions {
 	 *
 	 * @deprecated 1.23.1
 	 *
-	 * @param callable $callable Function to retrieve URL option.
-	 * @param string   $new_value URL Protocol to set URLs to.
+	 * @param string $callable Function name that was used to retrieve URL option.
+	 * @param string $new_value URL Protocol to set URLs to.
 	 * @return string Normalized URL.
 	 */
 	public static function get_protocol_normalized_url( $callable, $new_value ) {
@@ -583,10 +583,12 @@ class Functions {
 	/**
 	 * Returns if the current theme is a Full Site Editing theme.
 	 *
+	 * @since 1.49.0 Uses wp_is_block_theme() instead of deprecated gutenberg_is_fse_theme().
+	 *
 	 * @return bool Theme is a Full Site Editing theme.
 	 */
 	public static function get_is_fse_theme() {
-		return function_exists( 'gutenberg_is_fse_theme' ) && gutenberg_is_fse_theme();
+		return wp_is_block_theme();
 	}
 
 	/**
@@ -594,8 +596,8 @@ class Functions {
 	 *
 	 * @since 1.21.0
 	 *
-	 * @param array|obj $any        Source data to be cleaned up.
-	 * @param array     $seen_nodes Built array of nodes.
+	 * @param mixed $any        Source data to be cleaned up.
+	 * @param array $seen_nodes Built array of nodes.
 	 *
 	 * @return array
 	 */
@@ -670,5 +672,41 @@ class Functions {
 	 */
 	public static function get_active_modules() {
 		return ( new Jetpack_Modules() )->get_active();
+	}
+
+	/**
+	 * Return a list of PHP modules that we want to track.
+	 *
+	 * @since $$next_version$$
+	 *
+	 * @return array
+	 */
+	public static function get_loaded_extensions() {
+		if ( function_exists( 'get_loaded_extensions' ) ) {
+			return get_loaded_extensions();
+		}
+
+		// If a hosting provider has blocked get_loaded_extensions for any reason,
+		// we check extensions manually.
+
+		$extensions_to_check = array(
+			'libxml' => array( 'class' => 'libXMLError' ),
+			'xml'    => array( 'function' => 'xml_parse' ),
+			'dom'    => array( 'class' => 'DOMDocument' ),
+			'xdebug' => array( 'function' => 'xdebug_break' ),
+		);
+
+		$enabled_extensions = array();
+		foreach ( $extensions_to_check as $extension_name => $extension ) {
+			if (
+				( isset( $extension['function'] )
+				&& function_exists( $extension['function'] ) )
+				|| class_exists( $extension['class'] )
+			) {
+				$enabled_extensions[] = $extension_name;
+			}
+		}
+
+		return $enabled_extensions;
 	}
 }

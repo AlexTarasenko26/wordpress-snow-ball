@@ -36,27 +36,41 @@ class WooPay_Save_User {
 	 * Load scripts and styles for checkout page.
 	 */
 	public function register_checkout_page_scripts() {
+		if ( ! is_checkout() && ! has_block( 'woocommerce/checkout' ) ) {
+			return;
+		}
+
 		// Don't enqueue checkout page scripts when WCPay isn't available.
 		$gateways = WC()->payment_gateways->get_available_payment_gateways();
 		if ( ! isset( $gateways['woocommerce_payments'] ) ) {
 			return;
 		}
 
-		if ( ! $this->woopay_util->is_country_available( $gateways['woocommerce_payments'] ) ) {
+		if ( ! $this->woopay_util->is_country_available() ) {
 			return;
 		}
 
 		$style_url = plugins_url( 'dist/woopay.css', WCPAY_PLUGIN_FILE );
 
-		wp_register_style(
+		WC_Payments_Utils::enqueue_style(
 			'WCPAY_WOOPAY',
 			$style_url,
 			[],
-			\WC_Payments::get_file_version( 'dist/woopay.css' )
+			\WC_Payments::get_file_version( 'dist/woopay.css' ),
+			'all'
 		);
 		WC_Payments::register_script_with_dependencies( 'WCPAY_WOOPAY', 'dist/woopay' );
 
-		wp_enqueue_style( 'WCPAY_WOOPAY' );
+		$account_data = WC_Payments::get_account_service()->get_cached_account_data();
+
+		wp_localize_script(
+			'WCPAY_WOOPAY',
+			'woopayCheckout',
+			[
+				'PRE_CHECK_SAVE_MY_INFO' => isset( $account_data['pre_check_save_my_info'] ) ? $account_data['pre_check_save_my_info'] : false,
+			]
+		);
+
 		wp_enqueue_script( 'WCPAY_WOOPAY' );
 	}
 
