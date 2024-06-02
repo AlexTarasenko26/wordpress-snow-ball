@@ -4,13 +4,17 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"automattic/jetpack-constants": "^1.6.22"
+		"php": ">=7.0",
+		"automattic/jetpack-constants": "^2.0.2"
 	},
 	"require-dev": {
 		"brain/monkey": "2.6.1",
-		"yoast/phpunit-polyfills": "1.0.4",
-		"automattic/jetpack-changelogger": "^3.3.2",
-		"automattic/jetpack-ip": "^0.1.3"
+		"yoast/phpunit-polyfills": "1.1.0",
+		"automattic/jetpack-changelogger": "^4.2.3",
+		"automattic/jetpack-connection": "@dev",
+		"automattic/jetpack-identity-crisis": "@dev",
+		"automattic/jetpack-plans": "@dev",
+		"automattic/jetpack-ip": "^0.2.2"
 	},
 	"suggest": {
 		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -37,7 +41,14 @@
 			"link-template": "https://github.com/Automattic/jetpack-status/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "1.17.x-dev"
+			"dev-trunk": "3.0.x-dev"
+		},
+		"dependencies": {
+			"test-only": [
+				"packages/connection",
+				"packages/identity-crisis",
+				"packages/plans"
+			]
 		}
 	}
 }

@@ -68,6 +68,7 @@ class WC_REST_Payments_Onboarding_Controller extends WC_Payments_REST_Controller
 				'permission_callback' => [ $this, 'check_permission' ],
 			]
 		);
+
 		register_rest_route(
 			$this->namespace,
 			'/' . $this->rest_base . '/router/po_eligible',
@@ -121,7 +122,7 @@ class WC_REST_Payments_Onboarding_Controller extends WC_Payments_REST_Controller
 				],
 				'callback'            => [ $this, 'get_progressive_onboarding_eligible' ],
 				'permission_callback' => [ $this, 'check_permission' ],
-			]
+			],
 		);
 	}
 
